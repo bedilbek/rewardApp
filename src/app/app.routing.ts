@@ -1,23 +1,22 @@
 import { Routes } from '@angular/router';
+import { AppBlankComponent } from './layouts/blank/blank.component';
 
-import { FullComponent } from './layouts/full/full.component';
-
-export const AppRoutes: Routes = [{
-  path: '',
-  component: FullComponent,
-  children: [{ 
-    path: '', 
-    redirectTo: '/starter', 
-    pathMatch: 'full' 
-  }, {
-    path: 'material',
-    loadChildren: './material-component/material.module#MaterialComponentsModule'
-  }, {
-    path: 'starter',
-    loadChildren: './starter/starter.module#StarterModule'
-  }, {
-    path: 'icons',
-    loadChildren: './icons/mat-icon.module#IconsModule'
-  }]
-}];
+export const AppRoutes: Routes = [
+  {
+    path: "",
+    loadChildren: () => import('./components/main.module').then(m => m.MainModule)
+  },
+  // {
+  //   path: '',
+  //   component: AppBlankComponent,
+  //   children: [{ 
+  //     path: '', 
+  //     redirectTo: '/starter', 
+  //     pathMatch: 'full' 
+  //   }, {
+  //     path: 'starter',
+  //     loadChildren: './starter/starter.module#StarterModule'
+  //   }]
+// }
+];
 
