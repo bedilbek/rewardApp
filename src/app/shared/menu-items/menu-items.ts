@@ -26,13 +26,13 @@ export interface Menu {
 
 const MENUITEMS = [
   {
-    state: 'app-dispatcher',
+    state: 'dispatchers',
     name: 'Dispatcher',
     type: 'link',
     icon: 'headset'
   },
   {
-    state: 'app-users',
+    state: 'users',
     name: 'Users',
     type: 'link',
     icon: 'people'

@@ -8,10 +8,36 @@
             <mat-card-content>
                 <!-- Row -->
                 <div fxLayout="row" fxLayoutWrap="wrap">
-                    <!-- column -->
-                    <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
-                        Users Table
-                    </div>
+                    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                            
+                            <ng-container matColumnDef="username">
+                                <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="email">
+                                <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.email}}</mat-cell>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="fullname">
+                                <mat-header-cell *matHeaderCellDef> Fullname </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}} </mat-cell>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="phone_number">
+                                <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.phone_number}} </mat-cell>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="update">
+                                <mat-header-cell *matHeaderCellDef> Update </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                            </ng-container>
+                
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
                 </div>      
             </mat-card-content>
         </mat-card>

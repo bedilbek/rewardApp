@@ -11,14 +11,16 @@ import { AppSidebarComponent } from '../layouts/full/sidebar/sidebar.component';
 import { AddUserComponent } from './management/users/add-user/add-user.component';
 import { UsersComponent } from './management/users/users/users.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-
+import { OrdersComponent } from './orders/orders.component';
+import { OrdersModule } from './orders/orders.module';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     MainRoutingModule,
+    FlexLayoutModule,
+    OrdersModule
   ],
   declarations: [
     MainComponent,
@@ -27,6 +29,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AppSidebarComponent,
     FullComponent,
     AddUserComponent,
+    
   ],
 })
 export class MainModule {

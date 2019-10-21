@@ -1,0 +1,48 @@
+<div class="login-register">
+  <div class="login-register-box">
+    <mat-card class="mat-elevation-z15">
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="text-center">
+            <h2 class="m-b-0" style="text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.34);">Weltlink <b>Reward App</b>
+            </h2>
+            <h4 class="m-t-0">Login to Rewarding Panel</h4>
+          </div>
+
+          <div *ngIf="requesting | async" fxLayout="row wrap" fxLayoutAlign="center center">
+            <mat-spinner></mat-spinner>
+          </div>
+
+          <div *ngIf="!(requesting | async)" fxLayout="row wrap">
+            <!-- col full-->
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput placeholder="Username" #Username
+                  [formControl]="form.controls['username']">
+              </mat-form-field>
+              <!-- <mat-error *ngIf="form.controls['username'].pristine"
+                class="text-danger support-text">Username is required.</mat-error> -->
+            </div>
+            <!-- col full-->
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Password" #Password
+                  [formControl]="form.controls['password']">
+                <mat-icon *ngIf="showPassword" matSuffix (click)="showPassword = false">visibility</mat-icon>
+                <mat-icon *ngIf="!showPassword" matSuffix (click)="showPassword = true">visibility_off</mat-icon>
+                <mat-error *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
+                  class="text-danger support-text">Password is required.</mat-error>
+              </mat-form-field>
+            </div>
+            
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <button mat-raised-button color="primary" class="btn-block btn-lg m-t-20 m-b-20" type="button" (click)="onSubmit()">
+                Login
+              </button>
+            </div>
+         </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

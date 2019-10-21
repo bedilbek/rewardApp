@@ -1,0 +1,12 @@
+mat-card {
+  border-radius: 12px;
+
+  code {
+    color: white;
+    background-color: rgba($color: #176BCC, $alpha: 0.9);
+    font-weight: 400;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+}

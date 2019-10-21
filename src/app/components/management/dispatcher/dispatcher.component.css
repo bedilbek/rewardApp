@@ -1,0 +1,25 @@
+mat-cell, mat-header-cell{
+    border-right: 1px solid #e0e0e0;
+    padding: 5px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .center{
+    justify-content: center;
+  }
+  mat-cell:not(:first-child):not(:last-child):hover {
+    cursor: pointer;
+    justify-content: center;
+    background: whitesmoke;
+    font-weight: bold;
+    box-shadow: 0.5px 0.5px #5f5f40;
+  } 
+  
+  mat-cell:not(:first-child):not(:last-child):focus {
+    outline: none;
+    background: whitesmoke;
+    font-weight: bold;
+    box-shadow: 0.5px 0.5px #5f5f40;
+  }
+  

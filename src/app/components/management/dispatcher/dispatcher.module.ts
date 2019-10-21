@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { DispatcherComponent } from "./dispatcher.component";
 import { DispatcherRoutes } from "./dispatcher.routing";
 import { SharedModule } from "../../../shared/shared.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   imports: [
