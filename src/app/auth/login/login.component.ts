@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      username: "",
+      email: "",
       password: [null, Validators.required]
     });
 
@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    let username = this.form.get('username').value
+    let email = this.form.get('email').value
     let password = this.form.get('password').value
 
 
-    this.authAPI.login(username, password).subscribe(data => {
+    this.authAPI.login(email, password).subscribe(data => {
       console.log(data)
       // if (data.status === 200) {
       //   this.router.navigate(["dashboard"]);

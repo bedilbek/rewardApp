@@ -1,0 +1,10 @@
+mat-table {
+    width: 100%;
+  }
+
+  #addBtn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+  }

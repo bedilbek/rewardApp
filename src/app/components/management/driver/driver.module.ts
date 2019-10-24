@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { UsersComponent } from './users/users.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { UsersRoutes } from './users.routing';
-import { AddUserComponent } from './add-user/add-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DriversRoutes } from './driver.routing';
+import { DriverComponent } from './list-drivers/driver.component';
+import { AddDriverComponent } from './add-driver/add-driver.component';
 
 @NgModule({
   imports: [
@@ -15,10 +15,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(UsersRoutes)
+    RouterModule.forChild(DriversRoutes)
     
   ],
-  declarations: [ UsersComponent, AddUserComponent ]
+  declarations: [ DriverComponent, AddDriverComponent ]
 })
 
-export class UsersModule {}
+export class DriversModule {}

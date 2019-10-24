@@ -45,18 +45,15 @@ export class AuthService extends CoreHTTPService {
   }
 
   navigateToURL() {
-      this.router.navigateByUrl('/dispatchers')
+    this.router.navigateByUrl('/dispatchers')
   }
 
   logout() {
     if (this.getToken()) this.userAPI.logout().pipe(finalize(() => localStorage.clear())).subscribe()
   }
 
-  // MARK: Utility Functions For User Object
   set user(user: any) {
     localStorage.setItem('user', JSON.stringify(user))
-    this.company = user.memberships.company[0];
-    this.permissions = user
   }
 
   get user() {
@@ -64,7 +61,7 @@ export class AuthService extends CoreHTTPService {
   }
 
   get id() {
-    return this.user.id
+    return this.user.role_id
   }
 
   get email() {
@@ -80,80 +77,6 @@ export class AuthService extends CoreHTTPService {
     return this.user.phone_number
   }
 
-  // Permissions
-  set permissions(user) {
-    let permissions: string[] = user.permissions;
-    this.isAdmin = user.is_superuser;
-    if (user.is_superuser === true) permissions["superuser"] = [true];
-    localStorage.setItem("permissions", JSON.stringify(permissions));
-  }
-
-  get permissions() {
-    return JSON.parse(localStorage.getItem("permissions"));
-  }
-
-  get permissions_boolean() {
-    var permissions = { ...this.permissions }
-    for (var p in permissions) {
-      if (permissions[p].length > 0) {
-        permissions[p] = true;
-      } else {
-        permissions[p] = false;
-      }
-    }
-   if (this.permissions.supervision) {
-      Object.keys(this.permissions.supervision).forEach(key => {
-        permissions[key] = this.permissions.supervision[key].length > 0
-      });
-    }
-    return permissions
-  }
-
-  getPermission(permission) {
-    if (!this.permissions) return undefined
-    return this.permissions[permission]
-  }
-
-  get permittedOffices() {
-    let offices = (this.getPermission("supervision") as Array<any>).filter(supervision => supervision["office_id"])
-    offices.forEach(element => {
-      element["id"] = element["office_id"]
-      element["name"] = element["office_name"]
-    });
-    return offices
-  }
-
-  get isCompanySupervisor() {
-    return this.permissions_boolean.company == true
-  }
-
-  get isOfficeSupervisor() {
-    return this.permissions_boolean.office == true
-  }
-
-  get isSuperAdmin() {
-    let superuser_permissions = this.getPermission("superuser")
-    if (superuser_permissions) {
-      if (superuser_permissions[0]) return true;
-    } else return false;
-  }
-
-  set company(company) {
-    if (company) {
-      localStorage.setItem("company", JSON.stringify(company));
-    }
-  }
-
-  get company() {
-    return localStorage.getItem("company");
-  }
-
-  get companyID() {
-    if (this.company) return JSON.parse(this.company).id
-    else return undefined;
-  }
-
-  // MARK: Token Functions
   getToken() {
     let keyobj = localStorage.getItem("token")
     if (keyobj) {

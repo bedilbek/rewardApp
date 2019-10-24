@@ -8,10 +8,7 @@ import { FullComponent } from '../layouts/full/full.component';
 import { SharedModule } from '../shared/shared.module';
 import { AppHeaderComponent } from '../layouts/full/header/header.component';
 import { AppSidebarComponent } from '../layouts/full/sidebar/sidebar.component';
-import { AddUserComponent } from './management/users/add-user/add-user.component';
-import { UsersComponent } from './management/users/users/users.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { OrdersComponent } from './orders/orders.component';
 import { OrdersModule } from './orders/orders.module';
 
 @NgModule({
@@ -20,7 +17,8 @@ import { OrdersModule } from './orders/orders.module';
     SharedModule,
     MainRoutingModule,
     FlexLayoutModule,
-    OrdersModule
+    OrdersModule,
+    
   ],
   declarations: [
     MainComponent,
@@ -28,7 +26,6 @@ import { OrdersModule } from './orders/orders.module';
     SpinnerComponent,
     AppSidebarComponent,
     FullComponent,
-    AddUserComponent,
     
   ],
 })

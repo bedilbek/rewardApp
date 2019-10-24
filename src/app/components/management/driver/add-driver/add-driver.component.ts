@@ -1,21 +1,15 @@
-import { Component, OnInit, Self } from "@angular/core";
-import { MatSnackBar } from "@angular/material";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
-import { DispatchersService } from "../../../../core";
-
-export interface Icon_Name {
-  type: string;
-  icon: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DispatchersService } from '../../../../core';
+import { MatSnackBar } from '@angular/material';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: "app-add-user",
-  templateUrl: "./add-user.component.html",
-  styleUrls: ["./add-user.component.css"],
+  selector: 'app-add-driver',
+  templateUrl: './add-driver.component.html',
+  styleUrls: ['./add-driver.component.css']
 })
-
-export class AddUserComponent implements OnInit {
+export class AddDriverComponent implements OnInit {
   userID;
   myForm: FormGroup;
   passwordsMatch = true;
@@ -32,8 +26,7 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      id:"",
-      user: this.fb.group({
+      user: {
         id:"",
         first_name: ["", [Validators.required]],
         username: ["", [Validators.required]],
@@ -41,12 +34,7 @@ export class AddUserComponent implements OnInit {
         email: ["", [Validators.required, Validators.email]],
         phone_number: ["", [Validators.required]],
         password: [null, [Validators.required, Validators.minLength(8)]],
-      }),
-      legs_choice_for_90: 0,
-      legs_choice_for_80: 0,
-      legs_choice_for_70: 0,
-      plan_gross: 0,
-      reward_percentage_for_drivers: 0
+      }
      });
 
      this.route.params.subscribe(res => {
@@ -68,14 +56,16 @@ export class AddUserComponent implements OnInit {
   }
 
   submit() {
-
+    let data  = {
+      user: this.myForm.getRawValue()
+    }
     if (this.userID) {
-      this.dispatchersAPI.update(this.myForm.getRawValue()).subscribe(res => {
+      this.dispatchersAPI.update(data).subscribe(res => {
         this.snackBar.open("Success! Update successful.", "OK");
         this.router.navigate(["/users/"]);
       });
     } else {
-      this.dispatchersAPI.create(this.myForm.getRawValue()).subscribe(res => {
+      this.dispatchersAPI.create(data).subscribe(res => {
         console.log("USER ADD => ", res);
         this.snackBar.open("Success! Addition successful.", "OK");
         this.router.navigate(["/users/"]);

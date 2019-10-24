@@ -1,38 +1,58 @@
-<mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Order N123 
-        </mat-panel-title>
-        <mat-panel-description>
-          Example Order
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-  
-      <mat-form-field>
-        <input matInput placeholder="Order N123" disabled>
-      </mat-form-field>
-  
-      <mat-form-field>
-        <input matInput placeholder="Driver : Navruzbek" disabled>
-      </mat-form-field>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Order N234 
-        </mat-panel-title>
-        <mat-panel-description>
-          Example Order
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-  
-      <mat-form-field>
-        <input matInput placeholder="Order N234" disabled>
-      </mat-form-field>
-  
-      <mat-form-field>
-        <input matInput placeholder="Driver : Oleg" disabled>
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
+<div>
+  <div>
+    <mat-accordion *ngIf="!adding && !editing">
+      <mat-expansion-panel *ngFor="let order of data.orders">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{order.id}}
+          </mat-panel-title>
+          <mat-panel-description>
+            ${{order.price}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+          <input matInput placeholder="{{order.string_id}}" disabled>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Origin: {{order.location_to}}" disabled>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Destination: {{order.location_from}}" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Driver : {{order.driver_username}}" disabled>
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div *ngIf="adding || editing">
+      <h4 class="m-0"> New Order</h4>
+      <form [formGroup]="myForm" (ngSubmit)='createOrder()' (keydown.enter)="$event.preventDefault()">
+          <mat-form-field class="m-0" >
+              <mat-label>String Id</mat-label>
+              <input matInput formControlName="string_id" required [disabled]="editing">
+          </mat-form-field>
+          <mat-form-field >
+              <mat-label>Origin</mat-label>
+              <input matInput formControlName="location_from" [disabled]="editing">
+          </mat-form-field>
+          <mat-form-field >
+              <mat-label>Destination</mat-label>
+              <input matInput formControlName="location_to" [disabled]="editing" >
+          </mat-form-field>
+          <mat-form-field >
+              <mat-label>Price</mat-label>
+              <input matInput formControlName="price">
+          </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div>
+    <button *ngIf="!adding && !editing" class="m-t-15" (click)="addOrder()" type="button" mat-stroked-button>Add Order</button>
+    <button *ngIf="adding" class="m-t-15" (click)="createOrder()" type="button" mat-stroked-button>Create Order</button>
+    <button *ngIf="editing" class="m-t-15" (click)="createOrder()" type="button" mat-stroked-button>Update Order</button>
+
+  </div>
+</div>

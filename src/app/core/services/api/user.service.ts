@@ -10,16 +10,16 @@ import { exhaustMap } from 'rxjs/operators';
 export class UsersService extends CoreService {
   
   relativeBase = ''
-  authUrl =  'users/me/'
+  authUrl =  'auth/login/'
   
   constructor(http: HttpClient) {
     super('users', http);
   }
 
-  authenticate(username, password, options?: { push_token?: string }): Observable<any> {
+  authenticate(email, password, options?: { push_token?: string }): Observable<any> {
     
     let body = {
-      username: username.trim(),
+      email: email.trim(),
       password: password,
     }
 
@@ -31,6 +31,6 @@ export class UsersService extends CoreService {
   }
 
   logout() {
-    return this.post(this.relativeBase + 'logout/', {}).pipe(exhaustMap((obj, index) => of(obj)))
+    return this.post(this.relativeBase + 'auth/logout/', {}).pipe(exhaustMap((obj, index) => of(obj)))
   }
 }

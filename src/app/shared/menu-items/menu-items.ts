@@ -29,13 +29,19 @@ const MENUITEMS = [
     state: 'dispatchers',
     name: 'Dispatcher',
     type: 'link',
-    icon: 'headset'
+    icon: 'headset_mic'
   },
   {
     state: 'users',
     name: 'Users',
     type: 'link',
     icon: 'people'
+  },
+  {
+    state: 'drivers',
+    name: 'Drivers',
+    type: 'link',
+    icon: 'drive_eta'
   }
 ];
 

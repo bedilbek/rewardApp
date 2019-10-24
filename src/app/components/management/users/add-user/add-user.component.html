@@ -1,1 +1,122 @@
-<p>add-user works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h2 class="m-b-0">
+        <span *ngIf="!userID"> Add a new user </span>
+        <span *ngIf="userID"> Update a user </span>
+      </h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content fxLayout="row wrap">
+    <form [formGroup]="myForm" fxFlex=100 (ngSubmit)='submit()' (keydown.enter)="$event.preventDefault()">
+      <div fxLayout="row wrap" fxFlexAlign="center" formGroupName="user">
+        <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="first_name">
+            <mat-hint></mat-hint>
+            <mat-error *ngIf="">You need to fill</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10">
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="last_name">
+            <mat-error>Please, fill in this field.</mat-error>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="hello@example.com" formControlName="email" required>
+            <mat-hint></mat-hint>
+            <mat-error>Please, fill in this field with proper data.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10">
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Weltlink" formControlName="username" required>
+            <mat-hint></mat-hint>
+            <mat-error>Please, fill in this field with proper data.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10">
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="998971234567" formControlName="phone_number" required>
+            <mat-hint></mat-hint>
+            <mat-error>Please enter a valid number.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10" *ngIf="!userID">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="*****" [type]="showPassword ? 'text' : 'password'" formControlName="password">
+            <mat-icon *ngIf="showPassword" matSuffix (click)="showPassword = false">visibility</mat-icon>
+            <mat-icon *ngIf="!showPassword" matSuffix (click)="showPassword = true">visibility_off</mat-icon>
+            <mat-hint>No less than 8 characters, and use a mix of characters</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <hr><br>
+      <div fxLayout="row wrap" fxFlexAlign="center">
+        <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10">
+          <mat-form-field appearance="outline">
+            <mat-label>Legs Choice for 90 </mat-label>
+            <input matInput formControlName="legs_choice_for_90">
+          </mat-form-field>
+        </div>
+        <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10">
+          <mat-form-field appearance="outline">
+            <mat-label>Legs Choice for 80 </mat-label>
+            <input matInput formControlName="legs_choice_for_80">
+          </mat-form-field>
+        </div>
+        <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10">
+          <mat-form-field appearance="outline">
+            <mat-label>Legs Choice for 70 </mat-label>
+            <input matInput formControlName="legs_choice_for_70">
+          </mat-form-field>
+        </div>
+        <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10">
+            <mat-form-field appearance="outline">
+              <mat-label>Plan Gross </mat-label>
+              <input matInput formControlName="plan_gross">
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-md=33.33 fxFlex=100 class="p-l-10 p-r-10">
+              <mat-form-field appearance="outline">
+                <mat-label>Reward percentage for drivers </mat-label>
+                <input matInput formControlName="reward_percentage_for_drivers">
+              </mat-form-field>
+            </div>
+      </div>
+    </form>
+
+    <div fxFlex=100>
+      <!-- Submit Button -->
+      <div fxFlex.gt-md="20" fxFlex.gt-sm="25" fxFlex="100">
+        <button (click)="submit()" mat-raised-button color="primary" class="btn-block btn-lg m-t-20 m-b-20"
+          type="submit" [disabled]="!userID && !myForm.valid ">
+          <span *ngIf="!userID">Add</span>
+          <span *ngIf="userID">Update</span>
+        </button>
+      </div>
+
+      <!-- Delete Button -->
+      <div *ngIf="userID" fxFlex.gt-md="20" fxFlex.gt-sm="25" fxFlex="100">
+        <button mat-raised-button color="warn" class="btn-block btn-lg m-t-20 m-b-20 m-l-20" type="button"
+          (click)="delete()">
+          Deactivate
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

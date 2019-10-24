@@ -6,13 +6,13 @@
     <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
         <mat-card fxFlex="100">
             <mat-card-header  fxLayoutAlign="space-between center">
-                <mat-card-title>Navruzbek's drivers</mat-card-title>
+                <mat-card-title>{{dispatcher ? dispatcher.user.first_name : 'Dispatcher'}}'s drivers</mat-card-title>
             </mat-card-header>
             <mat-card-content fxLayout="row wrap"> 
                 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                     <ng-container matColumnDef="driver">
                         <mat-header-cell *matHeaderCellDef> Driver </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.user.first_name}} {{element.user.last_name}} </mat-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="monday">
@@ -23,43 +23,49 @@
                             </div>
                  
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let element" (click)="getOrders(element)"> <span matBadge={{element.orders.length}}
+                        <mat-cell *matCellDef="let element" (click)="getOrders(element.orders, 'Monday', element.id)"> <span matBadge="{{sortOrders(element.orders, 'Monday').length}}"
                                 matBadgeOverlap="false"></span></mat-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="tuesday">
                         <mat-header-cell *matHeaderCellDef> Tuesday </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.orders.length}} </mat-cell>
+                        <mat-cell *matCellDef="let element" (click)="getOrders(element.orders, 'Tuesday',element.id)"> <span matBadge="{{sortOrders(element.orders, 'Tuesday').length}}"
+                            matBadgeOverlap="false"></span></mat-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="wednesday">
                         <mat-header-cell *matHeaderCellDef> Wednesday </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                        <mat-cell *matCellDef="let element" (click)="getOrders(element.orders, 'Wednesday', element.id)"> <span matBadge="{{sortOrders(element.orders, 'Wednesday').length}}"
+                            matBadgeOverlap="false"></span></mat-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="thursday">
                         <mat-header-cell *matHeaderCellDef> Thursday </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                        <mat-cell *matCellDef="let element" (click)="getOrders(element.orders, 'Thursday', element.id)"> <span matBadge="{{sortOrders(element.orders, 'Thursday').length}}"
+                            matBadgeOverlap="false"></span></mat-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="friday">
                         <mat-header-cell *matHeaderCellDef> Friday </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                        <mat-cell *matCellDef="let element" (click)="getOrders(element.orders, 'Friday', element.id)"> <span matBadge="{{sortOrders(element.orders, 'Friday').length}}"
+                            matBadgeOverlap="false"></span></mat-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="saturday">
                         <mat-header-cell *matHeaderCellDef> Saturday </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                        <mat-cell *matCellDef="let element" (click)="getOrders(element.orders, 'Saturday', element.id)"> <span matBadge="{{sortOrders(element.orders, 'Saturday').length}}"
+                            matBadgeOverlap="false"></span></mat-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="sunday">
                         <mat-header-cell *matHeaderCellDef> Sunday </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                        <mat-cell *matCellDef="let element" (click)="getOrders(element.orders, 'Sunday',element.id)"> <span matBadge="{{sortOrders(element.orders, 'Sunday').length}}"
+                            matBadgeOverlap="false"></span></mat-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="sum">
                         <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> $ {{element.sum}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> $ {{element.gross}} </mat-cell>
                     </ng-container>
         
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

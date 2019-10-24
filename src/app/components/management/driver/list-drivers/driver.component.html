@@ -1,0 +1,60 @@
+<div fxLayout="row wrap">
+    <!-- column -->    
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card fxFlex="100">
+            <mat-card-header  fxLayoutAlign="space-between center">
+                <mat-card-title>
+                        <h2 class="m-0 m-t-10 m-b-10">Drivers</h2>
+                    </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content fxLayout="row wrap"> 
+                    <mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+                            <ng-container matColumnDef="username">
+                                <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.user.username}} </mat-cell>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="email">
+                                <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.user.email}}</mat-cell>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="fullname">
+                                <mat-header-cell *matHeaderCellDef> Fullname </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.user.first_name}} {{element.user.last_name}} </mat-cell>
+                            </ng-container>
+                
+
+                            <ng-container matColumnDef="phone_number">
+                                <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.user.phone_number}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="gross">
+                                <mat-header-cell *matHeaderCellDef> Gross </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> ${{element.gross}} </mat-cell>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="update">
+                                <mat-header-cell *matHeaderCellDef> Update </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <button class="m-r-10" [routerLink]="['edit', element.id]" mat-stroked-button>
+                                           <mat-icon>edit</mat-icon>
+                                    </button>    
+                                </mat-cell>
+                            </ng-container>
+                
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- column -->    
+</div>
+
+
+<button id="addBtn" mat-fab [routerLink]="['/drivers/add']">
+<mat-icon>add</mat-icon>
+</button>

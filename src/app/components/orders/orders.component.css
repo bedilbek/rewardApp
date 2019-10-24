@@ -1,0 +1,15 @@
+.m-t-15{
+    margin-top:15;
+}
+.m-0{
+    margin: 0;
+}
+.mat-form-field-appearance-outline .mat-form-field-wrapper{
+    margin: 0;
+}
+#accordion{
+    height: 30vh;
+}
+#action-panel{
+    height: 5vh;
+}

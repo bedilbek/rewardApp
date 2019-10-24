@@ -27,6 +27,12 @@ const routes: Routes = [{
           loadChildren:
             () => import('./management/users/users.module').then(m => m.UsersModule),
             canActivate: [AuthGuard]
+        },
+        {
+          path: "drivers",
+          loadChildren:
+            () => import('./management/driver/driver.module').then(m => m.DriversModule),
+            canActivate: [AuthGuard]
         }
       ]
     }
