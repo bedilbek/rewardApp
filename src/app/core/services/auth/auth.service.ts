@@ -68,6 +68,13 @@ export class AuthService extends CoreHTTPService {
     return this.user.email
   }
 
+  get superuser(){
+    if(this.user.is_superuser)
+      return true
+    else 
+      return false
+  }
+
   get name() {
     let name = `${this.user.first_name} ${this.user.last_name}`
     return name.trim() == "" ? this.user.email : name

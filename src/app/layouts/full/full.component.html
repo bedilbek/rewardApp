@@ -1,15 +1,15 @@
 <div class="main-container">
     <mat-toolbar color="accent" class="topbar telative">
-        <button mat-icon-button (click)="snav.toggle()" value="sidebarclosed">
+        <button *ngIf="auth.superuser" mat-icon-button (click)="snav.toggle()" value="sidebarclosed">
             <mat-icon>menu</mat-icon>
         </button>
         <span fxFlex></span>
         <app-header></app-header>
     </mat-toolbar>
 
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
+    <mat-sidenav-container  class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
         [ngClass]="{'minisidebar': minisidebar}">
-        <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'"
+        <mat-sidenav *ngIf="auth.superuser" #snav id="snav" class="dark-sidebar pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'"
             fixedTopGap="0" [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches"
             (open)="sidebarOpened = true" (close)="sidebarOpened = false">
             <app-sidebar></app-sidebar>
