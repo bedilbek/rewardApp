@@ -10,7 +10,6 @@
             ${{order.price}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-
         <mat-form-field>
           <input matInput placeholder="{{order.string_id}}" disabled>
         </mat-form-field>
@@ -24,11 +23,14 @@
         <mat-form-field>
           <input matInput placeholder="Driver : {{order.driver_username}}" disabled>
         </mat-form-field>
+        <div>
+            <button mat-stroked-button *ngIf="!editing" (click)="editOrder(order.id)"><mat-icon>edit</mat-icon> Edit</button>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
 
     <div *ngIf="adding || editing">
-      <h4 class="m-0"> New Order</h4>
+      <h4 class="m-0"> {{this.myForm.controls.id ? ('Order id: '+this.myForm.controls.id.value) : 'New Order'}}</h4>
       <form [formGroup]="myForm" (ngSubmit)='createOrder()' (keydown.enter)="$event.preventDefault()">
           <mat-form-field class="m-0" >
               <mat-label>String Id</mat-label>
@@ -52,7 +54,7 @@
   <div>
     <button *ngIf="!adding && !editing" class="m-t-15" (click)="addOrder()" type="button" mat-stroked-button>Add Order</button>
     <button *ngIf="adding" class="m-t-15" (click)="createOrder()" type="button" mat-stroked-button>Create Order</button>
-    <button *ngIf="editing" class="m-t-15" (click)="createOrder()" type="button" mat-stroked-button>Update Order</button>
-
+    <button mat-stroked-button *ngIf="editing" (click)="createOrder()"><mat-icon>edit</mat-icon> Update</button>
+    
   </div>
 </div>

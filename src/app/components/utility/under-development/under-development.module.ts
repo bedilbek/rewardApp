@@ -4,14 +4,14 @@ import { UnderDevelopmentComponent } from './under-development.component';
 import { DemoMaterialModule } from '../../../shared/demo-material-module';
 
 @NgModule({
-  // declarations: [UnderDevelopmentComponent],
+  declarations: [UnderDevelopmentComponent],
   imports: [
     CommonModule,
     DemoMaterialModule
   ],
   exports: [
-    // UnderDevelopmentComponent
+    UnderDevelopmentComponent
   ],
-  // entryComponents: [UnderDevelopmentComponent]
+  entryComponents: [UnderDevelopmentComponent]
 })
 export class UnderDevelopmentModule { }

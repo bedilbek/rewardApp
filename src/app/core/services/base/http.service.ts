@@ -1,13 +1,13 @@
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
+
 
 export abstract class CoreHTTPService {
 
   protected baseURL: string;
 
   constructor(protected http: HttpClient) {
-    this.baseURL = `${environment.apiUrl}`;
+    this.baseURL = 'http://159.65.243.112/';
   }
 
   protected get(relativeURL: string, params?: HttpParams | {

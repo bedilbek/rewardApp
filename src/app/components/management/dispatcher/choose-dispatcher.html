@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Enter email of Dispatcher</h1>
+<form [formGroup]="myForm" fxFlex="100" (ngSubmit)='findDispatcher()' (keydown.enter)="$event.preventDefault()">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput formControlName="email">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button (click)="findDispatcher()" mat-button cdkFocusInitial>View</button>
+    </div>
+</form>

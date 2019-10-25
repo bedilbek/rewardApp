@@ -26,7 +26,7 @@ export class AddDriverComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      user: {
+      user: this.fb.group({
         id:"",
         first_name: ["", [Validators.required]],
         username: ["", [Validators.required]],
@@ -34,7 +34,8 @@ export class AddDriverComponent implements OnInit {
         email: ["", [Validators.required, Validators.email]],
         phone_number: ["", [Validators.required]],
         password: [null, [Validators.required, Validators.minLength(8)]],
-      }
+      }),
+      monitor_dispatcher:""      
      });
 
      this.route.params.subscribe(res => {
@@ -44,7 +45,6 @@ export class AddDriverComponent implements OnInit {
     if (this.userID) {
       this.dispatchersAPI.retrieve(this.userID).subscribe(res => {
         this.myForm.patchValue(res);
-        console.log(this.myForm.value)
       });
     }
   }
@@ -55,22 +55,26 @@ export class AddDriverComponent implements OnInit {
     });
   }
 
+
+  retriveDispatcher(){
+   
+  }
+
   submit() {
-    let data  = {
-      user: this.myForm.getRawValue()
-    }
-    if (this.userID) {
-      this.dispatchersAPI.update(data).subscribe(res => {
-        this.snackBar.open("Success! Update successful.", "OK");
-        this.router.navigate(["/users/"]);
-      });
-    } else {
-      this.dispatchersAPI.create(data).subscribe(res => {
-        console.log("USER ADD => ", res);
-        this.snackBar.open("Success! Addition successful.", "OK");
-        this.router.navigate(["/users/"]);
-      });
-    }
+    this.dispatchersAPI.search(this.myForm.controls.monitor_dispatcher.value).subscribe(res=>{
+      this.myForm.controls.monitor_dispatcher.patchValue = res.results[0].id
+      if (this.userID) {
+        this.dispatchersAPI.update(this.myForm.value).subscribe(res => {
+          this.snackBar.open("Success! Update successful.", "OK");
+          this.router.navigate(["/users/"]);
+        });
+      } else {
+        this.dispatchersAPI.create(this.myForm.value).subscribe(res => {
+          this.snackBar.open("Success! Addition successful.", "OK");
+          this.router.navigate(["/users/"]);
+        });
+      }
+    })
   }
 
   delete() {

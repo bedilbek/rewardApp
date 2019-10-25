@@ -49,7 +49,7 @@ export class AuthService extends CoreHTTPService {
   }
 
   logout() {
-    if (this.getToken()) this.userAPI.logout().pipe(finalize(() => localStorage.clear())).subscribe()
+    if (this.getToken()) this.userAPI.logout().pipe(finalize(() => localStorage.clear())).subscribe();  this.router.navigateByUrl('auth')
   }
 
   set user(user: any) {

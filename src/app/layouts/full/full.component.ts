@@ -16,7 +16,7 @@ export class FullComponent implements OnDestroy, AfterViewInit {
       
   private _mobileQueryListener: () => void;
   
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public menuItems: MenuItems, private auth: AuthService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public menuItems: MenuItems, public auth: AuthService) {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
