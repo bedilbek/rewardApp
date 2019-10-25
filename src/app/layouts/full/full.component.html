@@ -7,7 +7,7 @@
         <app-header></app-header>
     </mat-toolbar>
 
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0" >
         <mat-sidenav *ngIf="auth.superuser"  #snav id="snav" class="dark-sidebar pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'"
             fixedTopGap="0" [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches"
             (open)="sidebarOpened = true" (close)="sidebarOpened = false">
